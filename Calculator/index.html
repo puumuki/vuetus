@@ -1,0 +1,48 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="index.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+      <title>Vue / Calculator</title>
+
+    </head>
+    <body>
+        
+      <div id="app">
+
+        <div class="result"><span>{{result}}</span></div>
+
+        <div class="buttons">
+
+          <div class="button" v-on:click="ce">CE</div>
+          <div class="button" v-on:click="c">C</div>
+          <div class="button" v-on:click="pow2">x^2</div>
+          <div class="button" v-on:click="divide">/</div>     
+
+          <div class="button" v-on:click="num(7)">7</div>
+          <div class="button" v-on:click="num(8)">8</div>
+          <div class="button" v-on:click="num(9)">9</div>            
+          <div class="button" v-on:click="multiply">X</div>
+          
+          <div class="button" v-on:click="num(4)">4</div>
+          <div class="button" v-on:click="num(5)">5</div>
+          <div class="button" v-on:click="num(6)">6</div>            
+          <div class="button" v-on:click="minus">-</div>            
+
+          <div class="button" v-on:click="num(1)">1</div>
+          <div class="button" v-on:click="num(2)">2</div>
+          <div class="button" v-on:click="num(3)">3</div>            
+          <div class="button" v-on:click="sum">+</div>
+          
+          <div class="button" v-on:click="abs">ABS</div>
+          <div class="button" v-on:click="num(0)">0</div>
+          <div class="button" v-on:click="decimal">,</div>            
+          <div class="button" v-on:click="equals">=</div>             
+        </div>
+
+      </div>
+
+        
+        <script src="index.js"></script>
+    </body>
+</html>
