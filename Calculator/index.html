@@ -14,30 +14,31 @@
 
         <div class="buttons">
 
-          <div class="button" v-on:click="ce">CE</div>
-          <div class="button" v-on:click="c">C</div>
-          <div class="button" v-on:click="pow2">x^2</div>
-          <div class="button" v-on:click="divide">/</div>     
+          <button class="button" ref="ce" v-on:click="ce">CE</button>
 
-          <div class="button" v-on:click="num(7)">7</div>
-          <div class="button" v-on:click="num(8)">8</div>
-          <div class="button" v-on:click="num(9)">9</div>            
-          <div class="button" v-on:click="multiply">X</div>
-          
-          <div class="button" v-on:click="num(4)">4</div>
-          <div class="button" v-on:click="num(5)">5</div>
-          <div class="button" v-on:click="num(6)">6</div>            
-          <div class="button" v-on:click="minus">-</div>            
+          <button class="button" ref="c" v-on:click="c">C</button>
+          <button class="button" ref="pow2" v-on:click="pow2">x^2</button>
+          <button class="button" ref="divide" v-on:click="divide">/</button>     
 
-          <div class="button" v-on:click="num(1)">1</div>
-          <div class="button" v-on:click="num(2)">2</div>
-          <div class="button" v-on:click="num(3)">3</div>            
-          <div class="button" v-on:click="sum">+</div>
+          <button class="button" ref="7" v-on:click="num(7)">7</button>
+          <button class="button" ref="8" v-on:click="num(8)">8</button>
+          <button class="button" ref="9" v-on:click="num(9)">9</button>            
+          <button class="button" ref="multiply" v-on:click="multiply">X</button>
           
-          <div class="button" v-on:click="abs">ABS</div>
-          <div class="button" v-on:click="num(0)">0</div>
-          <div class="button" v-on:click="decimal">,</div>            
-          <div class="button" v-on:click="equals">=</div>             
+          <button class="button" ref="4" v-on:click="num(4)">4</button>
+          <button class="button" ref="5" v-on:click="num(5)">5</button>
+          <button class="button" ref="6" v-on:click="num(6)">6</button>            
+          <button class="button" ref="minus" v-on:click="minus">-</button>            
+
+          <button class="button" ref="1" v-on:click="num(1)">1</button>
+          <button class="button" ref="2" v-on:click="num(2)">2</button>
+          <button class="button" ref="3" v-on:click="num(3)">3</button>            
+          <button class="button" ref="sum" v-on:click="sum">+</button>
+          
+          <button class="button" ref="ABS" v-on:click="abs">ABS</button>
+          <button class="button" ref="0" v-on:click="num(0)">0</button>
+          <button class="button" ref="decimal" v-on:click="decimal">,</button>            
+          <button class="button" ref="equals" v-on:click="equals">=</button>             
         </div>
 
       </div>

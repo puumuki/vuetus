@@ -11,6 +11,25 @@ const calculator = {
   operator: null 
 };
 
+const KEY_MAPPING = {
+  "1": { func: "num", value: 1, ref: '1' },
+  "2": { func: "num", value: 2, ref: '2' },
+  "3": { func: "num", value: 3, ref: '3' },
+  "4": { func: "num", value: 4, ref: '4' },
+  "5": { func: "num", value: 5, ref: '5' },
+  "6": { func: "num", value: 6, ref: '6' },
+  "7": { func: "num", value: 7, ref: '7' },
+  "8": { func: "num", value: 8, ref: '8' }, 
+  "9": { func: "num", value: 9, ref: '9' },
+  "0": { func: "num", value: 0, ref: '0' },  
+  "Enter": { func: "equals", ref: "equals" },
+  "+": { func: "sum", ref: 'sum' },
+  "-": { func: "minus", ref: 'minus' },
+  "/": { func: "divide", ref: 'divide' },
+  "*": { func: "multiply", ref: 'multiply' } ,
+  "Delete": { func: "c", ref: 'c' }
+};
+
 /**
  * Test is given value numeric
  * 
@@ -21,10 +40,31 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-var app = new Vue({ 
+var app = new Vue({
+
   el: '#app',
   data: calculator,
+
+  created: function () {
+    window.addEventListener('keydown', this.onKey)
+  },
+  beforeDestroy: function () {
+    window.removeEventListener('keydown', this.onKey)
+  },
+
   methods: {
+
+    onKey: function(event) {
+      const mapping = KEY_MAPPING[ event.key ];
+      
+      if( mapping ) {
+        const func = this[mapping.func];
+        typeof func === 'function' ? func(mapping.value) : '';
+        this.$refs[ mapping.ref ].focus();
+      } else {
+        console.log("Key is not mapped", event);
+      }      
+    },
 
     pow2: function() {
       this.$data.operator = 'pow2';

@@ -12,21 +12,32 @@ html, body {
     height: 1em;
 }
 
-.buttons {
+#app .buttons {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    background-color: #b6b6b6;
+
     grid-gap: 5px;
     
 }
 
-.button {
+#app button {
     text-align: center;
     text-transform: uppercase;
     background-color: #d4d4d4;
     padding: 10px;
+    box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    background:linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    color:#ffffff;
+    border-radius:0.5em;
+	cursor:pointer;
 }
 
-.button:hover {
+#app .button:focus {
+    color: #ffff00;
+    font-weight: 600;
+}
+
+
+#app .button:hover {
     color: white;
 }
