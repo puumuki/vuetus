@@ -1,0 +1,73 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="index.css">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      <meta name="author" content="name">
+      <meta name="description" content="description here">
+      <meta name="keywords" content="keywords,here">
+      
+      <title>Forza / Calculator</title>
+
+    </head>
+    <body>
+        
+      <div class="forzacalculator">
+
+        <div class="player">
+
+          <div class="gridcontainer">
+            <span class="text">17</span>
+
+            <input  ref="point17"
+                    v-on:click="inputClicked(17)"
+                    v-model.number="points[17]"
+                    v-bind:class="{ 'error': errors.points['17'] }" 
+                    type="number"
+                    step="17" min="0" max="51" />
+
+            <span>D</span>
+
+            <input v-model.number="points.d" type="number" 
+                   v-bind:class="{ 'error': errors.points['d'] }" />
+
+            <span>18</span>
+            <input v-model.number="points[18]" type="number" 
+                   v-bind:class="{ 'error': errors.points['18'] }" />
+
+            <span>T</span>
+            <input v-model.number="points.t" type="number" 
+                   v-bind:class="{ 'error': errors.points['t'] }" />
+
+            <span>19</span>
+            <input v-model.number="points[19]" type="number" 
+                   v-bind:class="{ 'error': errors.points['19'] }" />
+
+            <span>R</span>
+            <input v-model.number="points.r" type="number"
+                   v-bind:class="{ 'error': errors.points['r'] }"  />
+
+            <span>20</span>
+            <input v-model.number="points[20]" type="number" 
+                   v-bind:class="{ 'error': errors.points['20'] }"/>
+
+            <span>B</span>
+            <input v-model.number="points.b" type="number"
+                   v-bind:class="{ 'error': errors.points['b'] }" />
+          </div>
+
+          <div class="gridcontainer">
+            <span>Total</span>
+            {{pointsSum}}
+          </div>
+
+        </div>
+     
+      </div>
+
+        
+        <script src="index.js"></script>
+    </body>
+</html>
