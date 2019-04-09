@@ -10,17 +10,44 @@ function isNumber(n) {
 }
 
 Vue.component('player', {
-  template: '#player-template'
+  template: '#player-template',
+  
+  props: ['player'],
+
+  data: function() {
+    return {
+      points: this.player.points
+    }
+  },
+
+  methods: {
+    pointChanged: function( value, points ) {
+      this.player.points[value] = points;
+    }
+  },
+
+  computed: {
+    pointsSum: function() {     
+      return Object.keys(this.points).reduce((accumalator, currentValue, i) => {
+        if( isNumber( this.points[currentValue] ) ) {
+          return this.points[currentValue] + accumalator;          
+        } else {
+          return accumalator;
+        }
+      },0);
+    }
+  }  
+
 });
 
 Vue.component('number-input', {
   template: '#number-input-template',
   
-  props: ['value'],
+  props: ['value', "player" ],
 
   data: function() {
     return {
-      point: 0
+      point: this.player.points[ this.value ]
     };
   },
 
@@ -59,65 +86,56 @@ Vue.component('number-input', {
 
 });
 
-var app = new Vue({
+window.data = {
 
+  players: [
+    {
+      id: 1,
+      name: 'Teemu',
+      points: {
+        "17": 17,
+        "d": 0,
+        "18": 0,
+        "t": 0,
+        "19": 0,
+        "r": 0,
+        "20": 0,
+        "b": 0
+      }
+    },
+    { 
+      id: 2,     
+      name: 'VP',
+      points: {
+        "17": 0,
+        "d": 0,
+        "18": 0,
+        "t": 0,
+        "19": 0,
+        "r": 0,
+        "20": 0,
+        "b": 0
+      }
+    }
+  ]
+};
+
+var app = new Vue({
   el: '.forzacalculator',
 
-  data: {
+  data: window.data,
 
-    playerName: 'Teemu',
-
-    points: {
-      "17": 0,
-      "d": 0,
-      "18": 0,
-      "t": 0,
-      "19": 0,
-      "r": 0,
-      "20": 0,
-      "b": 0
+  watch: {
+    players: function() {
+      console.log(":O")
     }
-
   },
-
 
   methods: {
-    pointChanged: function( value, points ) {
-      this.points[value] = points;
+    pointsChanged: function( points ) {
+      console.log( points );
     }
-  },
-
-  computed: {
-
-    errors: function() {
-
-      const baseScores = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-
-      return {
-        points:{
-          "17": !([0, 17, 17*2, 17*3].includes(this.points["17"])),
-          "d":  !( baseScores.map( v => v*2).includes(this.points["d"])),
-          "18": !([0, 18, 18*2, 18*3].includes(this.points["18"])),
-          "t": !(baseScores.map( v => v*3).includes(this.points['t'])),
-          "19": !([0, 19, 19*2, 19*3].includes(this.points["19"])),
-          "r": !([0, 41, 82, 123 ].includes(this.points["r"])),
-          "20": !([0, 20, 20*2, 20*3].includes(this.points["20"])),
-          "b": !([0, 25, 50, 75, 100, 125, 150].includes(this.points['b']))
-        }
-      };      
-    },
-
-    pointsSum: function() {     
-      return Object.keys(this.points).reduce((accumalator, currentValue, i) => {
-        if( isNumber( this.points[currentValue] ) ) {
-          return this.points[currentValue] + accumalator;          
-        } else {
-          return accumalator;
-        }
-      },0);
-    }
-  }
-  
+  },  
 });
 
 

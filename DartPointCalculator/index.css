@@ -6,6 +6,10 @@ html, body {
   font-size: 18px;   
 }
 
+.forzacalculator h2 {
+  margin: 0;
+  padding: 0;
+}
 
 .forzacalculator .player {
   padding: 1em;

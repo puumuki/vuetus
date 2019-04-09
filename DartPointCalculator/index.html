@@ -14,50 +14,17 @@
     </head>
     <body>
         
-      <div class="forzacalculator">
-
-        <div class="player">
-
-          <h2>{{playerName}}</h2>
-
-          <div class="gridcontainer">
-
-            <span class="text">17</span>
-            <number-input value="17" @point="pointChanged"></number-input>
-
-            <span>D</span>
-            <number-input value="d" @point="pointChanged"></number-input>
-
-            <span>18</span>
-            <number-input value="18" @point="pointChanged"></number-input>
-
-
-            <span>T</span>
-            <number-input value="t" @point="pointChanged"></number-input>
-
-            <span>19</span>
-            <number-input value="19" @point="pointChanged"></number-input>
-
-            <span>R</span>
-            <number-input value="r" @point="pointChanged"></number-input>
-
-            <span>20</span>
-            <number-input value="20" @point="pointChanged"></number-input>
-
-            <span>B</span>
-            <number-input value="b" @point="pointChanged"></number-input>
-
-          </div>
-
-          <div class="gridcontainer">
-            <span>Total</span>
-            {{pointsSum}}
-          </div>
-
-        </div>
-     
+      <!-- Main application view -->
+      <div class="forzacalculator">       
+        <player v-for="player in players"
+                v-bind:player="player"
+                v-bind:key="player.id"
+                @points="pointsChanged">
+        </player>
       </div>
+      <!-- Main application view end -->
 
+      <!-- Component templates -->
       <script  type="text/x-template" id="number-input-template">
         <input type="number"
             inputmode="numeric" pattern="[0-9]*" 
@@ -65,43 +32,42 @@
             v-bind:class="{ 'error': errors.points[value] }" >
       </script>
         
-      <script type="text/x-template">
+      <script type="text/x-template" id="player-template">
         <div class="player">
 
-          <h2>{{playerName}}</h2>
+          <h2>{{player.name}}</h2>
 
           <div class="gridcontainer">
 
             <span class="text">17</span>
-            <number-input value="17" @point="pointChanged"></number-input>
+            <number-input value="17" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>D</span>
-            <number-input value="d" @point="pointChanged"></number-input>
+            <number-input value="d" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>18</span>
-            <number-input value="18" @point="pointChanged"></number-input>
-
+            <number-input value="18" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>T</span>
-            <number-input value="t" @point="pointChanged"></number-input>
+            <number-input value="t" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>19</span>
-            <number-input value="19" @point="pointChanged"></number-input>
+            <number-input value="19" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>R</span>
-            <number-input value="r" @point="pointChanged"></number-input>
+            <number-input value="r" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>20</span>
-            <number-input value="20" @point="pointChanged"></number-input>
+            <number-input value="20" v-bind:player="player" @point="pointChanged"></number-input>
 
             <span>B</span>
-            <number-input value="b" @point="pointChanged"></number-input>
+            <number-input value="b" v-bind:player="player" @point="pointChanged"></number-input>
 
           </div>
 
           <div class="gridcontainer">
             <span>Total</span>
-            {{pointsSum}}
+            <span>{{pointsSum}}</span>
           </div>
 
         </div>
