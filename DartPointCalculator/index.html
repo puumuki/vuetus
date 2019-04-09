@@ -5,7 +5,7 @@
 
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-      <meta name="author" content="name">
+      <meta name="author" content="Teemu Puukko">
       <meta name="description" content="description here">
       <meta name="keywords" content="keywords,here">
       
@@ -18,44 +18,35 @@
 
         <div class="player">
 
-          <div class="gridcontainer">
-            <span class="text">17</span>
+          <h2>{{playerName}}</h2>
 
-            <input  ref="point17"
-                    v-on:click="inputClicked(17)"
-                    v-model.number="points[17]"
-                    v-bind:class="{ 'error': errors.points['17'] }" 
-                    type="number"
-                    step="17" min="0" max="51" />
+          <div class="gridcontainer">
+
+            <span class="text">17</span>
+            <number-input value="17" @point="pointChanged"></number-input>
 
             <span>D</span>
-
-            <input v-model.number="points.d" type="number" 
-                   v-bind:class="{ 'error': errors.points['d'] }" />
+            <number-input value="d" @point="pointChanged"></number-input>
 
             <span>18</span>
-            <input v-model.number="points[18]" type="number" 
-                   v-bind:class="{ 'error': errors.points['18'] }" />
+            <number-input value="18" @point="pointChanged"></number-input>
+
 
             <span>T</span>
-            <input v-model.number="points.t" type="number" 
-                   v-bind:class="{ 'error': errors.points['t'] }" />
+            <number-input value="t" @point="pointChanged"></number-input>
 
             <span>19</span>
-            <input v-model.number="points[19]" type="number" 
-                   v-bind:class="{ 'error': errors.points['19'] }" />
+            <number-input value="19" @point="pointChanged"></number-input>
 
             <span>R</span>
-            <input v-model.number="points.r" type="number"
-                   v-bind:class="{ 'error': errors.points['r'] }"  />
+            <number-input value="r" @point="pointChanged"></number-input>
 
             <span>20</span>
-            <input v-model.number="points[20]" type="number" 
-                   v-bind:class="{ 'error': errors.points['20'] }"/>
+            <number-input value="20" @point="pointChanged"></number-input>
 
             <span>B</span>
-            <input v-model.number="points.b" type="number"
-                   v-bind:class="{ 'error': errors.points['b'] }" />
+            <number-input value="b" @point="pointChanged"></number-input>
+
           </div>
 
           <div class="gridcontainer">
@@ -67,7 +58,57 @@
      
       </div>
 
+      <script  type="text/x-template" id="number-input-template">
+        <input type="number"
+            inputmode="numeric" pattern="[0-9]*" 
+            v-model.number="point"
+            v-bind:class="{ 'error': errors.points[value] }" >
+      </script>
         
-        <script src="index.js"></script>
+      <script type="text/x-template">
+        <div class="player">
+
+          <h2>{{playerName}}</h2>
+
+          <div class="gridcontainer">
+
+            <span class="text">17</span>
+            <number-input value="17" @point="pointChanged"></number-input>
+
+            <span>D</span>
+            <number-input value="d" @point="pointChanged"></number-input>
+
+            <span>18</span>
+            <number-input value="18" @point="pointChanged"></number-input>
+
+
+            <span>T</span>
+            <number-input value="t" @point="pointChanged"></number-input>
+
+            <span>19</span>
+            <number-input value="19" @point="pointChanged"></number-input>
+
+            <span>R</span>
+            <number-input value="r" @point="pointChanged"></number-input>
+
+            <span>20</span>
+            <number-input value="20" @point="pointChanged"></number-input>
+
+            <span>B</span>
+            <number-input value="b" @point="pointChanged"></number-input>
+
+          </div>
+
+          <div class="gridcontainer">
+            <span>Total</span>
+            {{pointsSum}}
+          </div>
+
+        </div>
+      </script>
+
+      <script src="index.js"></script>
+
+
     </body>
 </html>
