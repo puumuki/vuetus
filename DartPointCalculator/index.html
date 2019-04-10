@@ -15,12 +15,14 @@
     <body>
         
       <!-- Main application view -->
-      <div class="forzacalculator">       
-        <player v-for="player in players"
-                v-bind:player="player"
-                v-bind:key="player.id"
-                @points="pointsChanged">
-        </player>
+      <div class="forzacalculator">
+        <div class="playercontainer">
+            <player v-for="player in players"
+            v-bind:player="player"
+            v-bind:key="player.id"
+            @points="pointsChanged">
+          </player>
+        </div>
       </div>
       <!-- Main application view end -->
 
@@ -40,28 +42,28 @@
           <div class="gridcontainer">
 
             <span class="text">17</span>
-            <number-input value="17" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="17" v-bind:point="player.points[17]" @point="pointChanged"></number-input>
 
             <span>D</span>
-            <number-input value="d" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="d" v-bind:point="player.points.d" @point="pointChanged"></number-input>
 
             <span>18</span>
-            <number-input value="18" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="18" v-bind:point="player.points[18]" @point="pointChanged"></number-input>
 
             <span>T</span>
-            <number-input value="t" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="t" v-bind:point="player.points.t" @point="pointChanged"></number-input>
 
             <span>19</span>
-            <number-input value="19" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="19" v-bind:point="player.points[19]" @point="pointChanged"></number-input>
 
             <span>R</span>
-            <number-input value="r" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="r" v-bind:point="player.points.r" @point="pointChanged"></number-input>
 
             <span>20</span>
-            <number-input value="20" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="20" v-bind:point="player.points[20]" @point="pointChanged"></number-input>
 
             <span>B</span>
-            <number-input value="b" v-bind:player="player" @point="pointChanged"></number-input>
+            <number-input value="b" v-bind:point="player.points.b" @point="pointChanged"></number-input>
 
           </div>
 

@@ -43,13 +43,7 @@ Vue.component('player', {
 Vue.component('number-input', {
   template: '#number-input-template',
   
-  props: ['value', "player" ],
-
-  data: function() {
-    return {
-      point: this.player.points[ this.value ]
-    };
-  },
+  props: ['value', "point"],
 
   watch: {
     point: function() {
@@ -86,37 +80,29 @@ Vue.component('number-input', {
 
 });
 
+function createPlayer( id, name ) {
+  return {
+    id: id,
+    name: name,
+    points: {
+      "17": 17,
+      "d": 0,
+      "18": 0,
+      "t": 0,
+      "19": 0,
+      "r": 0,
+      "20": 0,
+      "b": 0
+    }    
+  }
+}
+
 window.data = {
 
   players: [
-    {
-      id: 1,
-      name: 'Teemu',
-      points: {
-        "17": 17,
-        "d": 0,
-        "18": 0,
-        "t": 0,
-        "19": 0,
-        "r": 0,
-        "20": 0,
-        "b": 0
-      }
-    },
-    { 
-      id: 2,     
-      name: 'VP',
-      points: {
-        "17": 0,
-        "d": 0,
-        "18": 0,
-        "t": 0,
-        "19": 0,
-        "r": 0,
-        "20": 0,
-        "b": 0
-      }
-    }
+    createPlayer(1, 'Teemu'),
+    createPlayer(2, 'VP'),
+    createPlayer(3, 'Player')
   ]
 };
 
@@ -135,7 +121,11 @@ var app = new Vue({
     pointsChanged: function( points ) {
       console.log( points );
     }
-  },  
+  },
+  
+  component: {
+
+  }
 });
 
 
