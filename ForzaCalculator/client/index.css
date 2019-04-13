@@ -1,0 +1,53 @@
+html, body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600; 
+    margin:0;
+    padding:0;
+    font-size: 18px;   
+  }
+  
+  .forzacalculator h2 {
+    margin: 0;
+    padding: 0 0 0.25em 0;
+    text-align: center;
+  }
+  
+  .forzacalculator .playercontainer {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  
+  .forzacalculator .player {
+    padding: 1em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    padding-top: 0em;
+  }
+  
+  .forzacalculator .gridcontainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    text-align: center;
+  }
+  
+  .forzacalculator input[type="number"], .forzacalculator span {
+    padding: 0.5em;
+    min-width: 50px;
+  }
+  
+  .forzacalculator .error {
+    background-color: #ffb6b6;
+  }
+  /* -- Media brake point -- */
+  @media only screen and (max-width: 350px) {
+    .forzacalculator .playercontainer {
+      grid-template-columns: auto;
+    }
+  }
+  
+  @media only screen and (min-width: 600px) {
+    .forzacalculator .playercontainer {
+      grid-template-columns: auto auto auto;
+    }
+  }
+  

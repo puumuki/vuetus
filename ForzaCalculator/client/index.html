@@ -1,0 +1,102 @@
+<html>
+    <head>
+      <link rel="stylesheet" href="index.css">
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.1.0/vuex.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      <meta name="author" content="Teemu Puukko">
+      <meta name="description" content="description here">
+      <meta name="keywords" content="keywords,here">
+      
+      <title>Forza / Calculator</title>
+
+    </head>
+    <body>
+        
+      <!-- Main application view -->
+      <div class="forzacalculator">
+
+        <div class="header">
+          <h1>{{header}}</h1>
+        </div>
+
+        <div class="playercontainer">
+            <player v-for="player in players"
+            v-bind:player="player"
+            v-bind:key="player.id"
+            v-bind:id="player.id">
+          </player>
+        </div>
+      </div>
+      <!-- Main application view end -->
+
+      <!-- Component templates -->       
+      <script type="text/x-template" id="player-template">
+        <div class="player">
+
+          <h2>{{player.name}}</h2>
+
+          <div class="gridcontainer">
+            <span class="text">17</span>
+            <input type="number"
+                    inputmode="numeric" pattern="[0-9]*" 
+                    v-model.number="player.points[17]"
+                    v-bind:class="{ 'error': errors.points[17] }" />
+  
+            <span class="text">D</span>
+            <input type="number"
+                    inputmode="numeric" pattern="[0-9]*" 
+                    v-model.number="player.points.d"
+                    v-bind:class="{ 'error': errors.points.d }" />       
+  
+            <span class="text">18</span>
+            <input type="number"
+                  inputmode="numeric" pattern="[0-9]*" 
+                  v-model.number="player.points[18]"
+                  v-bind:class="{ 'error': errors.points[18] }" />    
+  
+            <span class="text">T</span>
+            <input type="number"
+                  inputmode="numeric" pattern="[0-9]*" 
+                  v-model.number="player.points.t"
+                  v-bind:class="{ 'error': errors.points.t }" />    
+  
+            <span class="text">19</span>
+            <input type="number"
+                    inputmode="numeric" pattern="[0-9]*" 
+                    v-model.number="player.points[19]"
+                    v-bind:class="{ 'error': errors.points[19] }" />
+  
+            <span class="text">R</span>
+            <input type="number"
+                    inputmode="numeric" pattern="[0-9]*" 
+                    v-model.number="player.points.r"
+                    v-bind:class="{ 'error': errors.points.r }" />       
+  
+            <span class="text">20</span>
+            <input type="number"
+                  inputmode="numeric" pattern="[0-9]*" 
+                  v-model.number="player.points[20]"
+                  v-bind:class="{ 'error': errors.points[20] }" />    
+  
+            <span class="text">B</span>
+            <input type="number"
+                  inputmode="numeric" pattern="[0-9]*" 
+                  v-model.number="player.points.b"
+                  v-bind:class="{ 'error': errors.points.b }" />                 
+          </div>
+               
+          <span>Total:</span><span>{{totalScores}}</span>
+
+        </div>
+      </script>
+
+      <script src="index.js"></script>
+
+
+    </body>
+</html>
