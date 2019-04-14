@@ -21,7 +21,7 @@
       <div class="forzacalculator">
 
         <div class="header">
-          <h1>{{header}}</h1>
+          <h1>{{header}} - {{websocketConnectionStatus}}</h1>
         </div>
 
         <div class="playercontainer">
@@ -42,52 +42,71 @@
 
           <div class="gridcontainer">
             <span class="text">17</span>
+            
             <input type="number"
-                    inputmode="numeric" pattern="[0-9]*" 
-                    v-model.number="player.points[17]"
-                    v-bind:class="{ 'error': errors.points[17] }" />
+                inputmode="numeric" pattern="[0-9]*" 
+                :value="player.points[17]"
+                data-value="17"
+                @input="pointUpdated"
+                v-bind:class="{ 'error': errors.points[17] }" />
   
+
             <span class="text">D</span>
             <input type="number"
-                    inputmode="numeric" pattern="[0-9]*" 
-                    v-model.number="player.points.d"
-                    v-bind:class="{ 'error': errors.points.d }" />       
+                  inputmode="numeric" pattern="[0-9]*" 
+                  :value="player.points.d"
+                  data-value="d"
+                  @input="pointUpdated"
+                  v-bind:class="{ 'error': errors.points.d }" />       
   
             <span class="text">18</span>
             <input type="number"
-                  inputmode="numeric" pattern="[0-9]*" 
-                  v-model.number="player.points[18]"
+                  inputmode="numeric" pattern="[0-9]*"
+                  :value="player.points[18]" 
+                  data-value="18"
+                  @input="pointUpdated"
                   v-bind:class="{ 'error': errors.points[18] }" />    
   
             <span class="text">T</span>
             <input type="number"
-                  inputmode="numeric" pattern="[0-9]*" 
-                  v-model.number="player.points.t"
+                  inputmode="numeric" pattern="[0-9]*"
+                  :value="player.points.t" 
+                  data-value="t"
+                  @input="pointUpdated"
                   v-bind:class="{ 'error': errors.points.t }" />    
   
             <span class="text">19</span>
             <input type="number"
-                    inputmode="numeric" pattern="[0-9]*" 
-                    v-model.number="player.points[19]"
+                    inputmode="numeric" pattern="[0-9]*"
+                    :value="player.points[19]" 
+                    data-value="19"
+                    @input="pointUpdated"
                     v-bind:class="{ 'error': errors.points[19] }" />
   
             <span class="text">R</span>
             <input type="number"
-                    inputmode="numeric" pattern="[0-9]*" 
-                    v-model.number="player.points.r"
+                    inputmode="numeric" pattern="[0-9]*"
+                    :value="player.points.r" 
+                    data-value="r"
+                    @input="pointUpdated"
                     v-bind:class="{ 'error': errors.points.r }" />       
   
             <span class="text">20</span>
             <input type="number"
-                  inputmode="numeric" pattern="[0-9]*" 
-                  v-model.number="player.points[20]"
+                  inputmode="numeric" pattern="[0-9]*"
+                  :value="player.points[20]" 
+                  data-value="20"
+                  @input="pointUpdated"
                   v-bind:class="{ 'error': errors.points[20] }" />    
   
             <span class="text">B</span>
             <input type="number"
-                  inputmode="numeric" pattern="[0-9]*" 
-                  v-model.number="player.points.b"
-                  v-bind:class="{ 'error': errors.points.b }" />                 
+                  inputmode="numeric" pattern="[0-9]*"
+                  :value="player.points.b"
+                  data-value="b"
+                  @input="pointUpdated"
+                  v-bind:class="{ 'error': errors.points.b }" />
+             
           </div>
                
           <span>Total:</span><span>{{totalScores}}</span>
@@ -95,6 +114,7 @@
         </div>
       </script>
 
+      <script src="forza-websocket-client.js"></script>
       <script src="index.js"></script>
 
 

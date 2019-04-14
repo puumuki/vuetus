@@ -1,18 +1,33 @@
+const _ = require('underscore');
+
 // Optional. You will see this name in eg. 'ps' or 'top' command
-process.title = 'node-chat';
+process.title = 'ForzaWebsocketServer';
 // Port where we'll run the websocket server
 var webSocketsServerPort = 1337;
 // websocket and http servers
 var webSocketServer = require('websocket').server;
 var http = require('http');
-/**
- * Global variables
- */
-// latest 100 messages
-var history = [ ];
-// list of currently connected clients (users)
-var clients = [ ];
 
+
+// list of currently connected clients (users)
+var clients = [];
+
+/**
+ * Send a broadcast message to all clients
+ * 
+ * @param {*} data, message data
+ * @param {int} index, client index witch send the orginal message, filters that client out.
+ */
+function broadCastMessage( data, index ) {
+  const _clients = index >= 0 ? clients.filter( (client, i) => { return i != index} ) : clients;
+
+  console.log("Sending broadcast message");
+
+  _clients.forEach( ( client, index ) => {
+    console.log("SENDING data to client", index, data );
+    client.send( JSON.stringify(data) );
+  });
+}
 
 /**
  * HTTP server
@@ -48,56 +63,39 @@ wsServer.on('request', function(request) {
   // we need to know client index to remove them on 'close' event
   
   var index = clients.push(connection) - 1;
-  var userName = false;
-  
-  console.log((new Date()) + ' Connection accepted.');
-  // send back chat history
-  if (history.length > 0) {
-    connection.sendUTF(JSON.stringify({ type: 'history', data: history}));
-  }
+
+  console.log((new Date()) + ' Connection accepted.', index);
+
+  connection.send(JSON.stringify({
+    type: 'connection',
+    data: {
+      connectionId: _.uniqueId()
+    }
+  }));
 
   // user sent some message
   connection.on('message', function(message) {
     if (message.type === 'utf8') { // accept only text
     
-      // first message sent by user is their name
-      if (userName === false) {
-        // remember user name
-        userName = htmlEntities(message.utf8Data);
-        // get random color and send it back to the user
-
-        console.log((new Date()) + ' User is known as: ' + userName + ' with ' + userColor + ' color.');
-      } else { // log and broadcast the message
-        console.log((new Date()) + ' Received Message from '+ userName + ': ' + message.utf8Data);
+      try {
+        const data = JSON.parse( message.utf8Data );
         
-        // we want to keep history of all sent messages
-        var obj = {
-          time: (new Date()).getTime(),
-          text: htmlEntities(message.utf8Data),
-          author: userName
-        };
-
-        history.push(obj);
-        history = history.slice(-100);
-
-        // broadcast message to all connected clients
-        var json = JSON.stringify({ type:'message', data: obj });
-        
-        for (var i=0; i < clients.length; i++) {
-          clients[i].sendUTF(json);
+        if( data.type === 'scoreupdated'){
+          broadCastMessage( data, index );
         }
+        
+      } catch( error ) {
+        console.log( "ERROR", error.message, error.stack )
       }
     }
   });
 
   // user disconnected
   connection.on('close', function(connection) {
-    if (userName !== false) {
-      console.log((new Date()) + " Peer " + connection.remoteAddress + " disconnected.");
-      
-      // remove user from the list of connected clients
-      clients.splice(index, 1);
-    }
+    console.log((new Date()) + " Peer " + connection.remoteAddress + " disconnected.");
+    
+    // remove user from the list of connected clients
+    clients.splice(index, 1);  
   });
 
 });
