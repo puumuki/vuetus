@@ -9,6 +9,18 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+const routes = [
+  { path: '/aula', component: Foo },
+  { path: '/peli', component: Bar }
+]
+
+const router = new VueRouter({
+  routes // short for `routes: routes`
+})
+
 Vue.component('player', {
   template: '#player-template',
   
@@ -108,6 +120,8 @@ window.data = {
 
 var app = new Vue({
   el: '.forzacalculator',
+
+  router,
 
   data: window.data,
 

@@ -1,3 +1,4 @@
+const websocket3 = require('./websocket');
 const express = require('express');
 const player = require('./player');
 const app = express();
@@ -13,6 +14,8 @@ app.get('/players', (req, res) => {
   ]);
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+const forzaWebsocketServer = new websocket3.ForzaWebsocketServer( server );
 
 

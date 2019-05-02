@@ -1,7 +1,7 @@
 
 class ForzaWebsocketClient {
 
-  constructor( url = 'ws://127.0.0.1:1337' ) {
+  constructor( url = 'ws://127.0.0.1:80' ) {
     this._url = url;
     
     this._eventListeners = {
