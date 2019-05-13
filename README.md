@@ -1,2 +1,0 @@
-# vuetus
-Small vue applications
